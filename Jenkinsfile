@@ -7,17 +7,17 @@ pipeline{
         checkout scm
       }
     }
-    stage("Test")
+    stage("Npm Installation")
     {
       steps{
-        sh 'install npm'
-        sh 'npm test'
+        bat 'npm install npm@latest -g'
+        bat 'npm test'
       }
     }
     stage("Build")
     {
       steps{
-        sh 'npm run build'
+        bat 'npm run build'
       }
     }
   }
