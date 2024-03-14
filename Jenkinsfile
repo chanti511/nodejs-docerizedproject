@@ -29,7 +29,7 @@ pipeline{
     stage('Push Docker Image') {
             steps {
                 // Login to Docker registry using credentials stored in Jenkins
-              withCredentials([usernamePassword( usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')])
+              withCredentials([usernamePassword(credentialsId: 'github_cred', passwordVariable: 'DOCKERHUB_PASSWORD', usernameVariable: 'DOCKERHUB_USERNAME')])
               {
                     bat "docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD"
                     bat "docker tag my-node-app:1.1 chanti511/my-node-app:1.1"
